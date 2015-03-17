@@ -5,7 +5,7 @@ use warnings;
 package Dist::Zilla::Plugin::Prereqs::Floor;
 # ABSTRACT: Dist::Zilla plugin to set a minimum allowed version for prerequisites
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 use Moose;
 
