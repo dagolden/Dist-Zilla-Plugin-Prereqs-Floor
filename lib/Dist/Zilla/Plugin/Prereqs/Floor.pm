@@ -81,13 +81,14 @@ __PACKAGE__->meta->make_immutable;
 This prereq provider sets a minimum allowed version for the specified modules.
 
 If the module has been listed as a prerequisite for any phase ('runtime',
-'test', etc.) or type ('requires', 'recommends', etc.) , the listed
+'test', etc.) or type ('requires', 'recommends', etc.), the listed
 minimum version will be applied to that phase and type.
 
-The prereqs will B<only> be applied if they already exist.
+The prereqs will B<only> be applied if they already exist.  This will
+not add any new prequisites.
 
 This prereq provider should run B<last>.  Any prerequisites added after
-it runs won't be upgraded.
+it runs won't be updated.
 
 =head1 SEE ALSO
 
