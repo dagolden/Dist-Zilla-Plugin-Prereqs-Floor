@@ -72,30 +72,33 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 SYNOPSIS
 
-    [Prereqs::Floor];
+    ; in dist.ini
+
+    [Prereqs::Floor]
     File::Temp = 0.19
     Test::More = 0.86
 
 =head1 DESCRIPTION
 
-This prereq provider sets a minimum allowed version for the specified modules.
+This prereq provider sets a minimum allowed version for the specified
+modules.
 
 If the module has been listed as a prerequisite for any phase ('runtime',
-'test', etc.) or type ('requires', 'recommends', etc.), the listed
-minimum version will be applied to that phase and type.
+'test', etc.) or type ('requires', 'recommends', etc.), the listed minimum
+version will be applied to that phase and type.
 
-The prereqs will B<only> be applied if they already exist.  This will
-not add any new prequisites.
+The prereqs will B<only> be applied if they already exist.  This will not
+add any new prequisites.
 
-This prereq provider should run B<last>.  Any prerequisites added after
-it runs won't be updated.
+This prereq provider should run B<last>.  Any prerequisites added after it
+runs won't be updated.
 
 =head1 SEE ALSO
 
 =for :list
 * L<Prereqs::Upgrade|Dist::Zilla::Plugin::Prereqs::Upgrade> – similar
-  concept with very flexible phase and type mapping, but harder to
-  apply universally across all phases/types at once
+  concept with very flexible phase and type mapping, but harder to apply
+  universally across all phases/types at once
 
 =cut
 
