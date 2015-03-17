@@ -88,7 +88,7 @@ If the module has been listed as a prerequisite for any phase ('runtime',
 version will be applied to that phase and type.
 
 The prereqs will B<only> be applied if they already exist.  This will not
-add any new prequisites.
+add any new prerequisites.
 
 This prereq provider should run B<last>.  Any prerequisites added after it
 runs won't be updated.
