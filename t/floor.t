@@ -14,6 +14,7 @@ my $dz_version = int( Dist::Zilla->VERSION );
 
 {
     my $tzil = Dist::Zilla::Tester->from_config( { dist_root => $root }, );
+    $tzil->chrome->logger->set_debug(1);
     ok( $tzil, "created test dist" );
 
     $tzil->build_in;
@@ -23,27 +24,29 @@ my $dz_version = int( Dist::Zilla->VERSION );
     my $prereqs = $meta->effective_prereqs;
 
     my $run_req = {
-        "strict"         => 0,
-        "warnings"       => 0,
-        "File::Basename" => 0,
-        "File::Spec"     => 3,
+        "File::Basename" => 2, # set by floor
+        "File::Spec"     => 3, # ignored by floor
+        "strict"         => 0, # ignored by floor
+        "warnings"       => 0, # ignored by floor
     };
 
-    is_deeply( $prereqs->requirements_for(qw/runtime requires/)->as_string_hash,
-        $run_req, "runtime requires" );
+    my $got;
+
+    $got = $prereqs->requirements_for(qw/runtime requires/)->as_string_hash;
+    is_deeply( $got, $run_req, "runtime requires" ) or diag explain $got;
 
     my $test_req = {
-        "IO::File"   => 1,
-        "Test::More" => 0.46,
+        "IO::File"   => 1.16,  # higher than floor
+        "Test::More" => 0.46,  # set by floor
     };
 
-    is_deeply( $prereqs->requirements_for(qw/test requires/)->as_string_hash,
-        $test_req, "test requires" );
+    $got = $prereqs->requirements_for(qw/test requires/)->as_string_hash;
+    is_deeply( $got, $test_req, "test requires" ) or diag explain $got;
 
-    my $test_rec = { "Path::Tiny" => 0.052 };
+    my $test_rec = { "Path::Tiny" => 0.052 }; # set by floor
 
-    is_deeply( $prereqs->requirements_for(qw/test recommends/)->as_string_hash,
-        $test_rec, "test recommends" );
+    $got = $prereqs->requirements_for(qw/test recommends/)->as_string_hash;
+    is_deeply( $got, $test_rec, "test recommends" ) or diag explain $got;
 }
 
 done_testing;

@@ -47,10 +47,10 @@ sub register_prereqs {
 
     foreach my $phase ( sort keys %$prereqs ) {
         foreach my $rel ( sort keys %{ $prereqs->{$phase} } ) {
-            foreach my $mod ( sort %{ $prereqs->{$phase}{$rel} } ) {
+            foreach my $mod ( sort keys %{ $prereqs->{$phase}{$rel} } ) {
                 next if $mod eq 'perl'; # obvious
                 if ( my $ver = $floor->{$mod} ) {
-                    $self->log_debug("$phase/$rel: module '$mod' prereq set to $ver");
+                    $self->log_debug("$phase/$rel: $mod minimum set to $ver");
                     $self->zilla->register_prereqs(
                         {
                             phase => $phase,
