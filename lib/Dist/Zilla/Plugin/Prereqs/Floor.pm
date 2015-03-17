@@ -38,9 +38,8 @@ sub register_prereqs {
 
     $self->log("Checking module prerequisites against minimum floor");
 
-    my $zilla   = $self->zilla;
-    my $exclude = $self->_exclude;
-    my $floor   = $self->_floor;
+    my $zilla = $self->zilla;
+    my $floor = $self->_floor;
 
     return unless %$floor;
 
@@ -57,7 +56,7 @@ sub register_prereqs {
                             phase => $phase,
                             type  => $rel,
                         },
-                        { $mod => $ver }
+                        $mod => $ver,
                     );
                 }
             }
