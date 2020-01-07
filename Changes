@@ -2,6 +2,8 @@ Revision history for Dist-Zilla-Plugin-Prereqs-Floor
 
 {{$NEXT}}
 
+    - Updated for dzil change from Path::Class to Path::Tiny.
+
 0.001     2015-03-17 14:44:41-04:00 America/New_York
 
     - First release
